@@ -16,41 +16,6 @@ function typeText() {
 // Start typing after a short delay
 setTimeout(typeText, 1000);
 
-// --- MOBILE MENU LOGIC ---
-const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const closeMenuBtn = document.getElementById('close-menu');
-const menuLinks = document.querySelectorAll('.menu-link');
-
-function openMenu() {
-    if (mobileMenu) {
-        mobileMenu.classList.remove('hidden');
-        mobileMenu.classList.remove('tv-close');
-        mobileMenu.classList.add('tv-open');
-        mobileMenu.classList.add('flex');
-    }
-}
-
-function closeMenu() {
-    if (mobileMenu) {
-        mobileMenu.classList.remove('tv-open');
-        mobileMenu.classList.add('tv-close');
-        // Wait for animation to finish before hiding
-        setTimeout(() => {
-            mobileMenu.classList.add('hidden');
-            mobileMenu.classList.remove('flex');
-        }, 300);
-    }
-}
-
-if (menuBtn) menuBtn.addEventListener('click', openMenu);
-if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
-
-// Close menu when a link is clicked
-menuLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-});
-
 // --- BUG GENERATION AND INTERACTION LOGIC ---
 const bugContainer = document.getElementById('bug-container');
 const winModal = document.getElementById('win-modal');
@@ -121,7 +86,7 @@ function waitForScrollAndShowCloseButton() {
     window.addEventListener('scroll', scrollListener);
 }
 
-function startProjectCountdown(duration = 5) {
+function startProjectCountdown(duration = 3) {
     stopProjectCountdown();
     let countdown = duration;
     if (projectInitTimerEl) projectInitTimerEl.textContent = String(countdown);
