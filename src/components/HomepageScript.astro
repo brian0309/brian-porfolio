@@ -65,6 +65,9 @@ let eliminatedCount = 0; // Track eliminated bugs
 const statusText = document.getElementById('status-text');
 const bugCountEl = document.getElementById('bug-count');
 const eliminatedCountEl = document.getElementById('eliminated-count');
+const projectInitTimerEl = document.getElementById('project-init-timer');
+let projectCountdownInterval = null;
+let scrollListener = null;
 
 // Update the status display
 function updateStatus() {
@@ -76,16 +79,85 @@ function updateStatus() {
     }
 }
 
+function stopProjectCountdown() {
+    if (projectCountdownInterval) {
+        clearInterval(projectCountdownInterval);
+        projectCountdownInterval = null;
+    }
+}
+
+function hideCloseButton() {
+    if (closeWinModalBtn) {
+        closeWinModalBtn.classList.add('hidden');
+    }
+}
+
+function showCloseButton() {
+    if (closeWinModalBtn) {
+        closeWinModalBtn.classList.remove('hidden');
+    }
+}
+
+function waitForScrollAndShowCloseButton() {
+    if (!closeWinModalBtn) return;
+    const revealButton = () => {
+        if (window.scrollY > 0) {
+            showCloseButton();
+            if (scrollListener) {
+                window.removeEventListener('scroll', scrollListener);
+                scrollListener = null;
+            }
+        }
+    };
+
+    if (window.scrollY > 0) {
+        showCloseButton();
+        return;
+    }
+
+    scrollListener = () => {
+        revealButton();
+    };
+    window.addEventListener('scroll', scrollListener);
+}
+
+function startProjectCountdown(duration = 5) {
+    stopProjectCountdown();
+    let countdown = duration;
+    if (projectInitTimerEl) projectInitTimerEl.textContent = String(countdown);
+    projectCountdownInterval = setInterval(() => {
+        countdown -= 1;
+        if (projectInitTimerEl) projectInitTimerEl.textContent = String(Math.max(countdown, 0));
+        if (countdown <= 0) {
+            stopProjectCountdown();
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            window.location.hash = '#projects';
+            waitForScrollAndShowCloseButton();
+        }
+    }, 1000);
+}
+
 // Win Modal Logic
 function showWinModal() {
     gameWon = true;
     updateStatus();
     if (winModal) winModal.classList.remove('hidden');
+    hideCloseButton();
+    startProjectCountdown();
 }
 
 if (closeWinModalBtn) {
     closeWinModalBtn.addEventListener('click', () => {
         if (winModal) winModal.classList.add('hidden');
+        stopProjectCountdown();
+        hideCloseButton();
+        if (scrollListener) {
+            window.removeEventListener('scroll', scrollListener);
+            scrollListener = null;
+        }
     });
 }
 

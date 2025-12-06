@@ -19,7 +19,6 @@ const posts = (await getCollection('blog')).sort(
 		<style>
 			:root {
 				--card-radius: 0;
-				--glow: 0 0 25px rgba(0, 255, 65, 0.2);
 			}
 
 			.page-shell {
@@ -73,9 +72,9 @@ const posts = (await getCollection('blog')).sort(
 				border: 2px solid var(--color-cyber-green);
 				border-radius: var(--card-radius);
 				padding: 1.25rem;
-				background: radial-gradient(120% 120% at 20% 20%, rgba(0, 255, 65, 0.08), rgba(0, 255, 65, 0.02)), #050505;
-				box-shadow: var(--glow);
-				transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+				background: #050505;
+				box-shadow: none;
+				transition: transform 0.2s ease, border-color 0.2s ease;
 				overflow: hidden;
 			}
 
@@ -89,7 +88,6 @@ const posts = (await getCollection('blog')).sort(
 
 			.blog-card:hover {
 				transform: translateY(-6px);
-				box-shadow: 0 0 35px rgba(0, 255, 65, 0.3);
 			}
 
 			.blog-card a {
@@ -113,14 +111,12 @@ const posts = (await getCollection('blog')).sort(
 				text-align: center;
 				color: #f8fafc;
 				background: rgba(0, 255, 65, 0.08);
-				box-shadow: 0 0 18px rgba(0, 255, 65, 0.18);
-				transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+				transition: transform 0.15s ease, background 0.15s ease;
 			}
 
 			.read-more:hover {
 				transform: translateY(-2px);
 				background: rgba(0, 255, 65, 0.16);
-				box-shadow: 0 0 28px rgba(0, 255, 65, 0.28);
 			}
 
 			.blog-thumb {
@@ -160,54 +156,46 @@ const posts = (await getCollection('blog')).sort(
 
 				.color-1 {
 					border-color: var(--color-cyber-pink);
-					box-shadow: 0 0 25px rgba(255, 0, 255, 0.22);
-					background: radial-gradient(120% 120% at 20% 20%, rgba(255, 0, 255, 0.08), rgba(255, 0, 255, 0.02)), #050505;
+					box-shadow: none;
 				}
 				.color-1 .read-more {
 					border-color: var(--color-cyber-pink);
 					background: rgba(255, 0, 255, 0.08);
-					box-shadow: 0 0 18px rgba(255, 0, 255, 0.18);
 					color: var(--color-cyber-pink);
-					transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+					transition: background 0.3s ease, color 0.3s ease;
 				}
 				.color-1 .read-more:hover {
 					background: var(--color-cyber-pink);
-					box-shadow: 0 0 28px rgba(255, 0, 255, 0.28);
 					color: #050505;
 				}
 
 			.color-2 {
 				border-color: var(--color-cyber-green);
-				box-shadow: 0 0 25px rgba(0, 255, 65, 0.22);
+				box-shadow: none;
 			}
 				.color-2 .read-more {
 					border-color: var(--color-cyber-green);
 					background: rgba(0, 255, 65, 0.08);
-					box-shadow: 0 0 18px rgba(0, 255, 65, 0.18);
 					color: var(--color-cyber-green);
-					transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+					transition: background 0.3s ease, color 0.3s ease;
 				}
 				.color-2 .read-more:hover {
 					background: var(--color-cyber-green);
-					box-shadow: 0 0 28px rgba(0, 255, 65, 0.28);
 					color: #050505;
 				}
 
 			.color-3 {
 				border-color: var(--color-cyber-cyan);
-				box-shadow: 0 0 25px rgba(0, 255, 255, 0.22);
-				background: radial-gradient(120% 120% at 20% 20%, rgba(0, 255, 255, 0.08), rgba(0, 255, 255, 0.02)), #050505;
+				box-shadow: none;
 			}
 				.color-3 .read-more {
 					border-color: var(--color-cyber-cyan);
 					background: rgba(0, 255, 255, 0.08);
-					box-shadow: 0 0 18px rgba(0, 255, 255, 0.18);
 					color: var(--color-cyber-cyan);
-					transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+					transition: background 0.3s ease, color 0.3s ease;
 				}
 				.color-3 .read-more:hover {
 					background: var(--color-cyber-cyan);
-					box-shadow: 0 0 28px rgba(0, 255, 255, 0.28);
 					color: #050505;
 				}
 
