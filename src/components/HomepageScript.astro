@@ -109,14 +109,26 @@ function startProjectCountdown(duration = 3) {
 function showWinModal() {
     gameWon = true;
     updateStatus();
-    if (winModal) winModal.classList.remove('hidden');
+    if (winModal) {
+        winModal.classList.remove('hidden');
+        winModal.classList.remove('tv-close');
+        winModal.classList.add('tv-open');
+        winModal.classList.add('flex');
+    }
     hideCloseButton();
     startProjectCountdown();
 }
 
 if (closeWinModalBtn) {
     closeWinModalBtn.addEventListener('click', () => {
-        if (winModal) winModal.classList.add('hidden');
+        if (winModal) {
+            winModal.classList.remove('tv-open');
+            winModal.classList.add('tv-close');
+            setTimeout(() => {
+                winModal.classList.add('hidden');
+                winModal.classList.remove('flex');
+            }, 300);
+        }
         stopProjectCountdown();
         hideCloseButton();
         if (scrollListener) {
