@@ -30,7 +30,7 @@ let eliminatedCount = 0; // Track eliminated bugs
 const statusText = document.getElementById('status-text');
 const bugCountEl = document.getElementById('bug-count');
 const eliminatedCountEl = document.getElementById('eliminated-count');
-const projectInitTimerEl = document.getElementById('project-init-timer');
+const projectInitTimerEl = document.getElementById('identity-init-timer');
 let projectCountdownInterval = null;
 let scrollListener = null;
 
@@ -95,11 +95,11 @@ function startProjectCountdown(duration = 3) {
         if (projectInitTimerEl) projectInitTimerEl.textContent = String(Math.max(countdown, 0));
         if (countdown <= 0) {
             stopProjectCountdown();
-            const projectsSection = document.getElementById('projects');
-            if (projectsSection) {
-                projectsSection.scrollIntoView({ behavior: 'smooth' });
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: 'smooth' });
             }
-            window.location.hash = '#projects';
+            window.location.hash = '#about';
             waitForScrollAndShowCloseButton();
         }
     }, 1000);
